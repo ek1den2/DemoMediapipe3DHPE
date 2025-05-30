@@ -50,9 +50,8 @@ options = PoseLandmarkerOptions(
     running_mode=VisionRunningMode.LIVE_STREAM,
     result_callback=print_result)
 
-
-# TARGET_WIDTH = 640
-# TARGET_HEIGHT = 480
+TARGET_WIDTH = 640
+TARGET_HEIGHT = 480
 
 import matplotlib.pyplot as plt
 plt.ion()
@@ -76,7 +75,7 @@ cap = cv2.VideoCapture(0)
 with PoseLandmarker.create_from_options(options) as landmarker:
 	while True:
 		rep, frame = cap.read()
-		# frame = cv2.resize(frame, (TARGET_WIDTH, TARGET_HEIGHT))
+		frame = cv2.resize(frame, (TARGET_WIDTH, TARGET_HEIGHT))
 		frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 		mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame_rgb)
 		frame_timestamp_ms = int(time.time() * 1000)
